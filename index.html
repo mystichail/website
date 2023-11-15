@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Art Gallery</title>
+    <style>
+        /* CSS for Gallery Display */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: rgb(72, 67, 67);
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ccbfbf;
+            text-shadow:6px 6px #333;
+            font-family: ninja naruto regular;
+            font-weight: 100;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s ease;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 18px;
+        }
+        .nav-links li a:hover {
+            color: #9a9595;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 20px;
+        }
+        .artwork {
+            position: relative;
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            height: 300px; /* Set a fixed height for all artworks */
+        }
+        .artwork img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+        .artwork:hover {
+            transform: scale(1.1);
+            cursor:pointer;
+            box-shadow: 8px 6px  rgba(0, 0, 0, 0.3);
+        }
+        .artwork p {
+            padding: 10px;
+            text-align: center;
+            margin: 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+        .search-box input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+        .search-box input[type="submit"] {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: none;
+            margin-left: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .artwork {
+                height: 200px;
+            }
+        }
+        .gallery a{
+            text-decoration:none;
+            color:#333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Hail's Art Gallery</h1>
+
+    <div class="navbar">
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="https://linktr.ee/mystic_hail" target="_blank">Socials</a></li>
+            <li><a href="#">About</a></li>
+            <!-- Add more links as needed -->
+        </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <input type="submit" value="Search" onclick="filterArtworks()">
+        </div>
+    </div>
+
+    <div class="gallery">
+        <!-- Replace image sources and add anchor tags -->
+        <a href="luffy.jpg" target="_blank" class="artwork">
+            <img src="luffy.jpg" alt="Artwork 1">
+            <p>Luffy</p>
+        </a>
+        <a href="denji.jpg" target="_blank" class="artwork">
+            <img src="denji.jpg" alt="Artwork 2">
+            <p>Denji</p>
+        </a>
+        <a href="rengoku.jpg" target="_blank" class="artwork">
+            <img src="rengoku.jpg" alt="Artwork 3">
+            <p>Rengoku</p>
+        </a>
+        <!-- Add more images and descriptions as needed -->
+    </div>
+    <script>
+        function filterArtworks() {
+            let input, filter, artworks, artwork, a, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            artworks = document.getElementById('artworks');
+            artwork = artworks.getElementsByClassName('artwork');
+
+            for (i = 0; i < artwork.length; i++) {
+                a = artwork[i].getElementsByTagName("p")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    artwork[i].style.display = "";
+                } else {
+                    artwork[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
